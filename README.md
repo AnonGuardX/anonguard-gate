@@ -8,11 +8,6 @@
 
 Accept Solana payments for any content — a joke, a recipe, a secret, a full course. Two lines of HTML. No backend work for the creator.
 
-<p>
-  <img src="images/gate-locked.png" alt="Locked gate card" width="400">
-  <img src="images/gate-modal.png" alt="Payment modal" width="400">
-</p>
-
 ## Live demos
 
 - [Blogger](https://anonguard.blogspot.com/2026/03/AnonGuard-Gate-Demo.html)
