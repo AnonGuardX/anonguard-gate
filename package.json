@@ -1,0 +1,21 @@
+{
+  "name": "anonguard-gate",
+  "version": "1.0.0",
+  "description": "Embeddable Solana paywall widget. Two lines of HTML. No backend.",
+  "keywords": [
+    "solana",
+    "paywall",
+    "gated-content",
+    "web3",
+    "crypto",
+    "encryption",
+    "aes-256",
+    "solana-pay"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnonGuardX/anonguard-gate"
+  },
+  "homepage": "https://anonguard.io"
+}

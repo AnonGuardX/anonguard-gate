@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Can You Sell a Joke? — AnonGuard Gate</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      max-width: 680px;
+      margin: 60px auto;
+      padding: 0 20px;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+    h1 { font-size: 1.5rem; margin-bottom: 8px; }
+    p { color: #444; margin-bottom: 24px; }
+    hr { border: none; border-top: 1px solid #e5e5e5; margin: 32px 0; }
+    small { color: #999; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <h1>Can you sell a joke?</h1>
+  <p>
+    The punchline below is locked behind a $0.02 paywall on Solana. Pay to see it.<br>
+    That's it — two lines of HTML, no backend, real crypto payment. Already paid? Click "Already paid? Connect wallet" to restore access.
+  </p>
+
+  <noscript><p style="color:#c00">JavaScript is required.</p></noscript>
+  <script>
+    if (location.protocol === 'file:')
+      document.write('<p style="background:#fff3cd;color:#856404;padding:12px 16px;border-radius:8px;font-size:14px">'
+        + '<strong>Local file detected.</strong> Payments work but the unlock message cannot reach this page over file://. '
+        + 'Open the <a href="https://anonguardx.github.io/anonguard-gate/demo.html">hosted version</a> or serve this file over HTTP.</p>');
+  </script>
+
+  <div data-anonguard-gate="10c703fb-7114-48bb-b19d-e538aad60684" data-shard="quTyGasvz1bZh7KveKN5X9hVRsF7ii49ff+8fgTvAF4="></div>
+  <script src="https://anonguard.io/gate.js"></script>
+
+  <hr>
+  <small>
+    Real $0.02 payment on Solana mainnet. Yes, you just bought a joke. AnonGuard is in beta.<br>
+    Source: <a href="https://github.com/AnonGuardX/anonguard-gate">github.com/AnonGuardX/anonguard-gate</a>
+  </small>
+</body>
+</html>
