@@ -3,7 +3,7 @@
 > Ever thought you could sell a joke? Now you can.
 
 <p align="center">
-  <img src="images/hero.svg" alt="Sell a joke. Sell anything." width="720">
+  <img src="images/hero.png" alt="Sell a joke. Sell anything." width="720">
 </p>
 
 Accept Solana payments for any content — a joke, a recipe, a secret, a full course. Two lines of HTML. No backend work for the creator.
