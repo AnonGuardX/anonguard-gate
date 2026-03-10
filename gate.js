@@ -366,7 +366,7 @@
         }}, payload.content));
       }
 
-      // Images (from files array)
+      // Files (images rendered inline, others as download buttons)
       if (payload.files && payload.files.length > 0) {
         var gallery = el('div', { style: {
           display: 'flex', flexDirection: 'column', gap: '16px',
@@ -375,7 +375,9 @@
 
         for (var fi = 0; fi < payload.files.length; fi++) {
           var file = payload.files[fi];
-          if (file.type && file.type.startsWith('image/') && file.data) {
+          if (!file.data) continue;
+
+          if (file.type && file.type.startsWith('image/')) {
             var src = 'data:' + file.type + ';base64,' + file.data;
             var img = el('img', {
               src: src,
@@ -386,6 +388,59 @@
               },
             });
             gallery.appendChild(img);
+          } else {
+            var ext = (file.name || 'file').split('.').pop().toUpperCase().substring(0, 4);
+            var rawBytes = Math.ceil(file.data.length * 3 / 4);
+            var sizeLabel = rawBytes < 1024 ? rawBytes + ' B'
+              : rawBytes < 1048576 ? (rawBytes / 1024).toFixed(0) + ' KB'
+              : (rawBytes / 1048576).toFixed(1) + ' MB';
+
+            var btn = el('button', { style: {
+              display: 'flex', alignItems: 'center', gap: '12px',
+              width: '100%', padding: '12px', borderRadius: '12px',
+              border: '1px solid rgba(255,255,255,.1)',
+              background: 'rgba(255,255,255,.03)',
+              cursor: 'pointer', textAlign: 'left', color: '#e5e7eb',
+            }});
+
+            var badge = el('div', { style: {
+              width: '40px', height: '40px', borderRadius: '8px', flexShrink: '0',
+              background: 'rgba(124,58,237,.12)', border: '1px solid rgba(124,58,237,.2)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '10px', fontWeight: '700', color: '#c4b5fd', textTransform: 'uppercase',
+            }}, ext);
+
+            var info = el('div', { style: { flex: '1', minWidth: '0' }});
+            info.appendChild(el('div', { style: {
+              fontSize: '14px', fontWeight: '500', color: '#fff',
+              overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+            }}, file.name || 'Download file'));
+            info.appendChild(el('div', { style: {
+              fontSize: '11px', color: '#9ca3af',
+            }}, sizeLabel));
+
+            var arrow = el('span', { style: { color: '#6b7280', fontSize: '14px', flexShrink: '0' }}, '\u2193');
+
+            btn.appendChild(badge);
+            btn.appendChild(info);
+            btn.appendChild(arrow);
+
+            (function (f) {
+              btn.addEventListener('click', function () {
+                var raw = atob(f.data);
+                var arr = new Uint8Array(raw.length);
+                for (var j = 0; j < raw.length; j++) arr[j] = raw.charCodeAt(j);
+                var blob = new Blob([arr], { type: f.type || 'application/octet-stream' });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url; a.download = f.name || 'file';
+                document.body.appendChild(a); a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              });
+            })(file);
+
+            gallery.appendChild(btn);
           }
         }
 
